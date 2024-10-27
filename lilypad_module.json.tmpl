@@ -1,0 +1,33 @@
+{
+  "machine": {
+    "gpu": 1,
+    "cpu": 1000,
+    "ram": 100
+  },
+  "job": {
+    "APIVersion": "V1beta1",
+    "Spec": {
+      "Deal": {
+        "Concurrency": 1
+      },
+      "Docker": {
+       "EnvironmentVariables": [
+          {{ if .JSON }}"{{ subst "JSON=%s" .JSON }}"{{ end }}
+        ],
+        "Image": "arsen3d/lp_esmfold_light:latest"
+      },
+      "Engine": "Docker",
+      "Network": {
+        "Type": "None"
+      },
+      "PublisherSpec": {
+        "Type": "IPFS"
+      },
+      "Resources": {
+        "GPU": ""
+      },
+      "Timeout": 1800,
+      "Verifier": "Noop"
+    }
+  }
+}
